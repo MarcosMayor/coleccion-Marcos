@@ -2,10 +2,16 @@ import React from 'react'
 import Button from '@mui/material/Button'
 import { Avatar, Box, Grid, Paper, TextField, } from '@mui/material';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import LockIcon from '@mui/icons-material/Lock';
+import { useDispatch } from 'react-redux'
+import { loginActions } from '../store/storelogin';
+
 
 function Login() {
 
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [login, setLogin] = useState({ user: '', pass: '' })
 
     const isVerifiedUser = () => {
@@ -13,12 +19,20 @@ function Login() {
             .then(response => response.json())
             .then(response => {
                 if (response) {
-                    if(Object.keys(response.data).length === 0){
-                        console.log('Datos incorrectos') 
-                    }else {
+                    /*
+                    se puede hacer con if response.data.nombre == undefinded
+                    */
+                    if (Object.keys(response.data).length === 0) {
+                        console.log('Datos incorrectos')
+                    } else {
                         console.log(response)
+                        dispatch(loginActions.login({
+                            name: response.data.nombre,
+                            rol: response.data.rol
+                        }))
+                        navigate('/home')
                     }
-                    
+
                 }
             })
     }

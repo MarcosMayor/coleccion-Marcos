@@ -4,6 +4,9 @@ import './index.css';
 import App from './App';
 import CssBaseline from '@mui/material/CssBaseline';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Provider } from 'react-redux'
+import store from './store/index'
+
 
 //Marcos Mayor Lorenzo
 const theme = createTheme({
@@ -32,10 +35,12 @@ const theme = createTheme({
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-<React.StrictMode>
+  <React.StrictMode>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <App />
-    </ThemeProvider>
-</React.StrictMode>
+      <Provider store={store}>
+        <App />
+      </Provider>
+  </ThemeProvider>
+</React.StrictMode >
 );
