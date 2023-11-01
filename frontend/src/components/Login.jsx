@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from '@mui/material/Button'
-import { Avatar, Box, Grid, Paper, TextField, } from '@mui/material';
+import { Avatar, Box, Grid, Paper, TextField, Typography, } from '@mui/material';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LockIcon from '@mui/icons-material/Lock';
@@ -61,29 +61,32 @@ function Login() {
                         <Avatar >
                             <LockIcon color="error" />
                         </Avatar>
-                        <Box id='caja' component='form' onSubmit={handleSubmit}>
+                        <Typography variant='h3'>Login</Typography>
+                        <Box id='caja' component='form' onSubmit={handleSubmit} textAlign='center'>
+                            <br />
                             <TextField
                                 id='login'
                                 label='Usuario'
                                 variant='outlined'
-                                fullWidth
+                                
                                 autoFocus
                                 onChange={(event) => { setLogin({ ...login, user: event.target.value }) }}
                             />
-                            <br />
                             <TextField
                                 id='password'
                                 label='Contraseña'
                                 variant='outlined'
                                 type='password'
-                                fullWidth
+                                
                                 onChange={(event) => { setLogin({ ...login, pass: event.target.value }) }}
                             />
+                            <br />
+                            <br />
                             <Button
                                 id='boton'
                                 type="submit"
                                 variant='contained'
-                                fullWidth
+                                
                             >
                                 Acceder
                             </Button>

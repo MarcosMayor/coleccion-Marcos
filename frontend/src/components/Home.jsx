@@ -28,7 +28,8 @@ function Home() {
 
     console.log(userData)
     return <>
-        <Typography align='center' variant='h1' color='green'>Entro {userData.userName} con rol {userData.userRol}</Typography>
+        <Typography align='center' variant='h1' color='green'>Página home de Marcos y Mayor</Typography>
+        <Typography align='center' variant='h2' color='secondary'>Entro {userData.userName} con rol {userData.userRol}</Typography>
         <Button onClick={logout}>Salir</Button>
     </>
 }
