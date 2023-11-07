@@ -38,18 +38,19 @@ function Home() {
             <Container>
                 <Toolbar>
                     <Grid container>
-                        <Grid item xs={12} md={12} lg={12}>
+                        <Grid item xs={1} md={1} lg={1}>
  {/*AdbIcon es un componente de la librería '@mui/icons-material/Adb' Elige uno diferente*/}
                             <AdbIcon />
                             <Typography>Hola, {userData.userName}</Typography>
                         </Grid>
-                        <Grid item xs={3} md={3} lg={3}>
+                        <Grid item xs={1} md={1} lg={1}>
 {/*El componente <Link> es de la librería: react-router-dom*/}
                                 {/*Sirve para ir a una página.*/}
                                 <Link to='/home'>Inicio</Link>
                         </Grid>
                         {/*AÑADIR TANTOS GRID ITEMS COMO SEAN NECESARIOS CON LOS LINKS
                         A LAS PÁGINAS Informes y Ayuda*/}
+                        <Grid item xs={10} md={10} lg={10}/>
                         <Grid item xs={7} md={5} lg={5}>
                             <Button variant='contained' onClick={logout}>Salir</Button>
                         </Grid>
@@ -74,7 +75,7 @@ function Home() {
                     </Grid>
                 {/*AÑADIR LOS DEMÁS ELEMENTOS DEL FORMULARIO: los TextField y el Button
                 //El Button debe de ser de type='submit' porque es un formulario*/}
-                    <Button type='submit'>Aceptar</Button>
+                    <Button variant='outlined' type='submit'>Aceptar</Button>
                 </Grid>
             </Box>
         </Paper>
