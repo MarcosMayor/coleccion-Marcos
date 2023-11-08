@@ -3,6 +3,7 @@ const express = require('express')
 const cors = require('cors')
 //importo el fichero login.js que está en la carpeta services
 const login = require('./services/login')
+const item = require('./services/item')
 
 //Definimos el puerto por que va a escuchar nuestra API las peticiones
 const port  = 3030
@@ -15,7 +16,6 @@ app.use(
     })
 )
 app.use(cors())
-
 
 
 //Ejemplo para ver cómo funciona un endpoint:
@@ -36,6 +36,16 @@ app.get('/login', async function(req, res, next) {
         next(err);
     }
 })
+
+app.get('/addItem', async function(req, res, next) {
+    try {
+    res.json(await item.insertData(req, res ))
+    } catch (err) {
+    console.error(`Error while inserting items `, err.message);
+    next(err);
+    }
+   })
+   
 
 //Iniciamos la API
 app.listen(port)
