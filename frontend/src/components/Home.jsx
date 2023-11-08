@@ -55,10 +55,10 @@ function Home() {
             <Container>
                 <Toolbar>
                     <Grid container>
-                        <Grid item xs={1} md={1} lg={1}>
+                        <Grid item xs={2} md={2} lg={2}>
  {/*AdbIcon es un componente de la librería '@mui/icons-material/Adb' Elige uno diferente*/}
                             <AdbIcon />
-                            <Typography>Hola, {userData.userName}</Typography>
+                            <Typography sx={{display:'inline'}}>Hola, {userData.userName}</Typography>
                         </Grid>
                         <Grid item xs={1} md={1} lg={1}>
 {/*El componente <Link> es de la librería: react-router-dom*/}
