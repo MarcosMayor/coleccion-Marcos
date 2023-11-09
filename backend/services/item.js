@@ -32,7 +32,7 @@ async function deleteData(req, res) {
     //En data almaceno los datos que me pasan para poder realizar el delete.
     const data = req.query
     const result = await db.query(
-        `delete from coleccion where nombre = ${data.nombre};`
+        `delete from coleccion where id = '${data.id}';`
     )
     /*En la variable result se almacena lo que devueve la consulta. Si accedemos a effectedRow nos da el número de filas de la base de
     datos que ha sido borrado. Si ese número es mayor que cero es que ha habido borrado en la base de datos.*/

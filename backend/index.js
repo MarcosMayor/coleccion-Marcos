@@ -6,7 +6,7 @@ const login = require('./services/login')
 const item = require('./services/item')
 
 //Definimos el puerto por que va a escuchar nuestra API las peticiones
-const port  = 3030
+const port = 3030
 
 const app = express()
 app.use(express.json())
@@ -21,13 +21,13 @@ app.use(cors())
 //Ejemplo para ver cómo funciona un endpoint:
 //este endpoint es / y devuelve un mensaje
 app.get('/', function (req, res) {
-    res.json({message: 'Hola Mundo!'})
+    res.json({ message: 'Hola Mundo!' })
 })
 
 //Creación del endpoint /login
 //llama al fichero login.js usando el método getUserData pasándole
 //el login (user) y la contraseña (password)
-app.get('/login', async function(req, res, next) {
+app.get('/login', async function (req, res, next) {
     console.log(req.query)
     try {
         res.json(await login.getUserData(req.query.user, req.query.password))
@@ -37,15 +37,35 @@ app.get('/login', async function(req, res, next) {
     }
 })
 
-app.get('/addItem', async function(req, res, next) {
+app.get('/addItem', async function (req, res, next) {
     try {
-    res.json(await item.insertData(req, res ))
+        res.json(await item.insertData(req, res))
     } catch (err) {
-    console.error(`Error while inserting items `, err.message);
-    next(err);
+        console.error(`Error while inserting items `, err.message);
+        next(err);
     }
-   })
-   
+})
+
+app.get('/getItems', async function (req, res, next) {
+    try {
+        res.json(await item.getData(req, res))    
+    } catch (err) {
+        console.error(`Error while getting items `, err.message);
+        next(err);
+    }
+})
+
+app.get('/deleteItem', async function (req, res, next) {
+    try {
+        res.json(await item.deleteData(req, res))
+    } catch (err) {
+        console.error(`Error while deleting items `, err.message);
+        next(err);
+    }
+})
+
+
+
 
 //Iniciamos la API
 app.listen(port)
