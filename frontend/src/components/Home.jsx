@@ -84,29 +84,29 @@ function Home() {
 
     console.log(userData)
     return <>
-        <AppBar position='static'>
+        <AppBar position='static' style={{paddingRight:'400px', minWidth:'2000px'}}>
             <Container>
-                <Toolbar>
-                    <Grid container>
-                        <Grid item xs={2} md={2} lg={2}>
+                <Toolbar >
+                    <Grid container style={{height:'70px'}}>
+                        <Grid item xs={2} md={2} lg={2} style={{paddingLeft:0, paddingTop:20, }}>
                             {/*AdbIcon es un componente de la librería '@mui/icons-material/Adb' Elige uno diferente*/}
                             <AdbIcon />
                             <Typography sx={{ display: 'inline' }}>Hola, {userData.userName}</Typography>
                         </Grid>
-                        <Grid item xs={1} md={1} lg={1}>
+                        <Grid item xs={1} md={1} lg={1} style={{paddingLeft:0, paddingTop:20 }}>
                             {/*El componente <Link> es de la librería: react-router-dom*/}
                             {/*Sirve para ir a una página.*/}
                             <Link to='/home'>Inicio</Link>
                         </Grid>
-                        <Grid item xs={1} md={1} lg={1}>
+                        <Grid item xs={1} md={1} lg={1} style={{paddingLeft:0, paddingTop:20 }}>
                             <Link to=''>Informe</Link>
                         </Grid>
-                        <Grid item xs={1} md={1} lg={1}>
+                        <Grid item xs={1} md={1} lg={1} style={{paddingLeft:0, paddingTop:20 }}>
                             <Link to=''>Ayuda</Link>
                         </Grid>
-                        <Grid item xs={9} md={9} lg={9} />
-                        <Grid item xs={1} md={1} lg={1}>
-                            <Button variant='contained' onClick={logout}>Salir</Button>
+                        <Grid item xs={6} md={6} lg={6} />
+                        <Grid item xs={1} md={1} lg={1} style={{paddingLeft:0, paddingTop:20, paddingLeft:'90px' }}>
+                            <Button variant='contained' color="secondary" onClick={logout}>Salir</Button>
                         </Grid>
                     </Grid>
                 </Toolbar>
@@ -167,11 +167,11 @@ function Home() {
                     <br />
                     {/*AÑADIR LOS DEMÁS ELEMENTOS DEL FORMULARIO: los TextField y el Button
                 //El Button debe de ser de type='submit' porque es un formulario*/}
-                    <Grid item xs={4} md={4} />
+                    <Grid item xs={3} md={3} />
                     <Grid item xs={2} md={2} >
                         <Button size="large" variant='outlined' type='submit' >Insertar</Button>
                     </Grid>
-                    <Grid item xs={1} md={1} />
+                    <Grid item xs={2} md={2} />
                     <Grid item xs={2} md={2} >
                         <Button size="large" variant='outlined' onClick={handleGetItem} >Buscar</Button>
                     </Grid>
