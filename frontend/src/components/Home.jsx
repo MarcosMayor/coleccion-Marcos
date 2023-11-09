@@ -77,6 +77,7 @@ function Home() {
                         alert('Error al borrar datos')
                     } else {
                         alert('Datos borrados exitosos')
+                        handleGetItem()
                     }
 
                 }
