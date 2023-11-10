@@ -58,12 +58,7 @@ function Home() {
             .then(response => response.json())
             .then(response => {
                 if (response) {
-                    if (Object.keys(response.data).length === 0) {
-                        alert('Error al buscar datos')
-                    } else {
-                        setTableData(response.data)  
-                    }
-
+                   setTableData(response.data)  
                 }
             })
     }
