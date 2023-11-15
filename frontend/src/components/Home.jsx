@@ -1,17 +1,14 @@
-import { Typography, AppBar, Container, Toolbar, Grid, Paper, Box, TextField } from "@mui/material";
+import { Grid, Paper, Box, TextField } from "@mui/material";
 import React from "react";
 import { useSelector } from 'react-redux'
-import { useDispatch } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
-import { loginActions } from "../store/storelogin";
+import { useNavigate} from "react-router-dom";
 import { Button } from "@mui/material";
 import { useEffect, useState } from 'react'
-import AdbIcon from '@mui/icons-material/Adb'
 import { TableCell, TableBody, TableRow, TableContainer, Table, TableHead } from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
+import TopBar from "./Topbar";
 
 function Home() {
-    const dispatch = useDispatch()
     const navigate = useNavigate()
     const userData = useSelector(state => state.login)
     const [tableData, setTableData] = useState([])
@@ -26,12 +23,6 @@ function Home() {
         }
        
     }, [isLoggedin, navigate])
-
-    const logout = (e) => {
-        e.preventDefault()
-        dispatch(loginActions.logout())
-        navigate('/')
-    }
 
     const handleSaveItem = (e) => {
         e.preventDefault()
@@ -48,12 +39,15 @@ function Home() {
                         alert('Datos guardados con éxito')
                         handleGetItem()
                     }
-
                 }
             })
+        item.marca=""
+        item.nombre=""
+        item.precio=""
+        item.tipo=""    
     }
-    const handleGetItem = (e) => {
-        
+
+    const handleGetItem = () => {
         fetch(`http://localhost:3030/getItems`)
             .then(response => response.json())
             .then(response => {
@@ -81,34 +75,7 @@ function Home() {
 
     console.log(userData)
     return <>
-        <AppBar position='relative' >
-            <Container>
-                <Toolbar >
-                    <Grid container style={{height:'70px'}}>
-                        <Grid item xs={2} md={2} lg={2} style={{ paddingTop:20, }}>
-                            {/*AdbIcon es un componente de la librería '@mui/icons-material/Adb' Elige uno diferente*/}
-                            <AdbIcon />
-                            <Typography sx={{ display: 'inline' }}>Hola, {userData.userName}</Typography>
-                        </Grid>
-                        <Grid item xs={1} md={1} lg={1} style={{paddingTop:20 }}>
-                            {/*El componente <Link> es de la librería: react-router-dom*/}
-                            {/*Sirve para ir a una página.*/}
-                            <Link to='/home'>Inicio</Link>
-                        </Grid>
-                        <Grid item xs={1} md={1} lg={1} style={{paddingTop:20 }}>
-                            <Link to=''>Informe</Link>
-                        </Grid>
-                        <Grid item xs={1} md={1} lg={1} style={{ paddingTop:20 }}>
-                            <Link to=''>Ayuda</Link>
-                        </Grid>
-                        <Grid item xs={6} md={6} lg={6} />
-                        <Grid item xs={1} md={1} lg={1} style={{paddingTop:20}}>
-                            <Button variant='contained' color="secondary" onClick={logout}>Salir</Button>
-                        </Grid>
-                    </Grid>
-                </Toolbar>
-            </Container>
-        </AppBar >
+       <TopBar/>
 
         <Paper>
             <Box component='form' autoComplete='off' onSubmit={handleSaveItem}>
@@ -180,7 +147,7 @@ function Home() {
             <Table aria-label='tabla cosas'>
                 <TableHead>
                     <TableRow>
-                        <TableCell>Borracion</TableCell>
+                        {userData.userRol === 'admin' && <TableCell>Borracion</TableCell>}
                         <TableCell>Nombre</TableCell>
                         <TableCell>Marca</TableCell>
                         <TableCell>Tipo</TableCell>
@@ -190,11 +157,12 @@ function Home() {
                 <TableBody>
                     {tableData.map((row) => (
                         <TableRow key={row.id} >
+                            {userData.userRol === 'admin' &&
                             <TableCell>
                                 <Button onClick={() => handleDeleteItem(row.id)}>
                                     <DeleteForeverIcon/>
                                 </Button>
-                            </TableCell>
+                            </TableCell>}
                             <TableCell>{row.nombre}</TableCell>
                             <TableCell >{row.marca}</TableCell>
                             <TableCell >{row.tipo}</TableCell>
