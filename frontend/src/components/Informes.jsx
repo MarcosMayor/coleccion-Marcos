@@ -6,12 +6,23 @@ import { useNavigate } from "react-router-dom";
 import InformeColeccion from "./InformeColeccion";
 
 function Informes(){
-    let botonclicked = true
+    const [botonClicked, setBotonClicked] = useState(false)
     const navigate = useNavigate()
     const [datosBaseDatos,setDatos] = useState([])
     const userData = useSelector(state => state.login)
-    
+
     const isLoggedin = userData.isAutenticated
+
+    const handleGetItem = () => {
+        fetch(`http://localhost:3030/getItems`)
+            .then(response => response.json())
+            .then(response => {
+                if (response) {
+                    console.log(response)
+                    setDatos(response.data)
+                }
+            })
+    }
     useEffect(() => {
         if (!isLoggedin) {
             navigate('/')
@@ -21,26 +32,10 @@ function Informes(){
         }
        
     }, [isLoggedin, navigate])
-
-    const handleGetItem = () => {
-        fetch(`http://localhost:3030/getItems`)
-            .then(response => response.json())
-            .then(response => {
-                if (response) {
-                    console.log(response)
-                   setDatos(response)  
-                }
-            })
-    }
+    
 
     const handleClick= (e) => {
-        if(botonclicked){
-            botonclicked=false
-            console.log(botonclicked)
-        } else {
-            botonclicked=true
-            console.log(botonclicked)
-        }  
+        setBotonClicked((prev) => !prev);
     }
 
 
@@ -54,7 +49,7 @@ function Informes(){
                 </Grid> 
             </Grid>
         </Paper>
-        {botonclicked? <InformeColeccion datos={datosBaseDatos}/>:console.log("no")}
+        {botonClicked? <InformeColeccion datos={datosBaseDatos}/>:null}
     </>
 
 
