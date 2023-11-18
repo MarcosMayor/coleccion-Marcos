@@ -5,15 +5,16 @@ import { useState } from "react";
 function InformeColeccion(props) {
     console.log(props.datos);
     const col = [
-    { title: "Nombre", field: "nombre" },
+    { title: "Nombre", field: "nombre" , filtering:false},
     { title: "Marca", field: "marca" },
     { title: "Tipo", field: "tipo" },
-    { title: "Precio", field: "precio" },
+    { title: "Precio", field: "precio" , filtering:false},
   ];
 
   return (
     <>
       <MaterialTable
+        title="Informe de datos"
         columns={col}
         data={props.datos}
         renderSummaryRow={({ column, data }) =>
@@ -24,19 +25,23 @@ function InformeColeccion(props) {
             : undefined
         }
         options={{
-            draggable: true,
-            columnsButton: true,
-            exportMenu: [
-            {
-              label: "Exportar PDF",
-              exportFunc: (cols, datas) =>
-                ExportPdf(cols, datas, "myPdfFileName"),
-            },
-            {
-              label: "Exportar CSV",
-              exportFunc: (cols, datas) =>
-                ExportCsv(cols, datas, "myCsvFileName"),
-            },
+          filtering:true,
+          headerStyle: {
+            backgroundColor:'#d85d00'
+          },
+          draggable: true,
+          columnsButton: true,
+          exportMenu: [
+          {
+            label: "Exportar PDF",
+            exportFunc: (cols, datas) =>
+              ExportPdf(cols, datas, "myPdfFileName"),
+          },
+          {
+            label: "Exportar CSV",
+            exportFunc: (cols, datas) =>
+              ExportCsv(cols, datas, "myCsvFileName"),
+          },
           ],
         }}
       />
