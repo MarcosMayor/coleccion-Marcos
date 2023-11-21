@@ -1,4 +1,4 @@
-import { Grid, Paper, Box, TextField } from "@mui/material";
+import { Grid, Paper, Box, TextField, Tooltip } from "@mui/material";
 import React from "react";
 import { useSelector } from 'react-redux'
 import { useNavigate} from "react-router-dom";
@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { TableCell, TableBody, TableRow, TableContainer, Table, TableHead } from "@mui/material";
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever'
 import TopBar from "./Topbar";
+
 
 function Home() {
     const navigate = useNavigate()
@@ -133,11 +134,15 @@ function Home() {
                 //El Button debe de ser de type='submit' porque es un formulario*/}
                     <Grid item xs={3} md={3} />
                     <Grid item xs={2} md={2} >
-                        <Button size="large" variant='outlined' type='submit' >Insertar</Button>
+                        <Tooltip title="Añadir" arrow placement="top">
+                            <Button size="large" variant='outlined' type='submit' >Insertar</Button>
+                        </Tooltip>
                     </Grid>
                     <Grid item xs={2} md={2} />
                     <Grid item xs={2} md={2} >
-                        <Button size="large" variant='outlined' onClick={handleGetItem} >Buscar</Button>
+                        <Tooltip title="Refrescar" arrow placement="top">
+                            <Button size="large" variant='outlined' onClick={handleGetItem} >Buscar</Button>
+                        </Tooltip>
                     </Grid>
                 </Grid>
             </Box>
@@ -159,9 +164,11 @@ function Home() {
                         <TableRow key={row.id} >
                             {userData.userRol === 'admin' &&
                             <TableCell>
-                                <Button onClick={() => handleDeleteItem(row.id)}>
-                                    <DeleteForeverIcon/>
-                                </Button>
+                                <Tooltip title="Borrar" arrow placement="bottom">
+                                    <Button onClick={() => handleDeleteItem(row.id)}>
+                                        <DeleteForeverIcon/>
+                                    </Button>
+                                </Tooltip>   
                             </TableCell>}
                             <TableCell>{row.nombre}</TableCell>
                             <TableCell >{row.marca}</TableCell>

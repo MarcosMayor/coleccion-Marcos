@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from '@mui/material/Button'
-import { Avatar, Box, Grid, Paper, TextField, Typography, } from '@mui/material';
+import { Avatar, Box, Grid, Paper, TextField, Typography, Tooltip } from '@mui/material';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LockIcon from '@mui/icons-material/Lock';
@@ -82,14 +82,16 @@ function Login() {
                             />
                             <br />
                             <br />
-                            <Button
+                            <Tooltip title="Acceder" arrow placement="bottom">
+                                <Button
                                 id='boton'
                                 type="submit"
                                 variant='contained'
                                 
-                            >
-                                Acceder
-                            </Button>
+                                >
+                                    Acceder
+                                </Button>
+                            </Tooltip>
                         </Box>
                     </Grid>
                 </Paper>

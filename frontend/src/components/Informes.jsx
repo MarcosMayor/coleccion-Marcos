@@ -1,4 +1,4 @@
-import { Button, Paper, Grid } from "@mui/material";
+import { Button, Paper, Grid, Tooltip } from "@mui/material";
 import TopBar from "./Topbar";
 import { useState,useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -45,7 +45,9 @@ function Informes(){
             <Grid container>
                 <Grid item xs={4.5} md={4.5} lg={4.5}></Grid>
                 <Grid item xs={3} md={3} lg={3}>
-                    <Button variant="contained" onClick={handleClick}>Informe Coleccion</Button>
+                    <Tooltip title="Mostrar tabla informe" arrow placement="bottom">
+                        <Button variant="contained" onClick={handleClick}>Informe Coleccion</Button>
+                    </Tooltip>
                 </Grid> 
             </Grid>
         </Paper>
