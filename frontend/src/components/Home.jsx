@@ -140,7 +140,7 @@ function Home() {
                     </Grid>
                     <Grid item xs={2} md={2} />
                     <Grid item xs={2} md={2} >
-                        <Tooltip title="Refrescar" arrow placement="top">
+                        <Tooltip title="Refrescar tabla" arrow placement="top">
                             <Button size="large" variant='outlined' onClick={handleGetItem} >Buscar</Button>
                         </Tooltip>
                     </Grid>
