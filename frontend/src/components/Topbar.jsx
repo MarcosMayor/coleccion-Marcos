@@ -39,7 +39,7 @@ function TopBar(){
                             </Grid>
                             }
                             <Grid item xs={1} md={1} lg={1} style={{ paddingTop:20 }}>
-                                <Link to=''>Ayuda</Link>
+                                <Link to='/Mayor_Lorenzo_Mayor_EXUT4_Manual.pdf' target="_blank">Ayuda</Link>
                             </Grid>
                             <Grid item xs={6} md={6} lg={6} />
                             <Grid item xs={1} md={1} lg={1} style={{paddingTop:20}}>
