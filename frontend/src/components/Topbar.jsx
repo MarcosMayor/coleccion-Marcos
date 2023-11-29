@@ -1,11 +1,10 @@
-import { Grid,Toolbar,AppBar,Container, Button, Typography } from "@mui/material"
+import { Grid,Toolbar,AppBar,Container, Button, Typography, Tooltip } from "@mui/material"
 import { Link } from "react-router-dom"
 import AdbIcon from '@mui/icons-material/Adb'
 import AccessibilityIcon from '@mui/icons-material/Accessibility';
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux'
 import { loginActions } from "../store/storelogin";
-
 
 
 function TopBar(){
@@ -44,7 +43,9 @@ function TopBar(){
                             </Grid>
                             <Grid item xs={6} md={6} lg={6} />
                             <Grid item xs={1} md={1} lg={1} style={{paddingTop:20}}>
-                                <Button variant='contained' color="secondary" onClick={logout}>Salir</Button>
+                                <Tooltip title="Desconectar" arrow placement="bottom">
+                                    <Button variant='contained' color="secondary" onClick={logout}>Salir</Button>
+                                </Tooltip>
                             </Grid>
                         </Grid>
                     </Toolbar>
