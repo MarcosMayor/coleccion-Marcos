@@ -77,7 +77,7 @@ function Home() {
     console.log(userData)
     return <>
        <TopBar/>
-
+       {userData.userRol != 'invitado' &&
         <Paper>
             <Box component='form' autoComplete='off' onSubmit={handleSaveItem}>
                 <br />
@@ -147,6 +147,7 @@ function Home() {
                 </Grid>
             </Box>
         </Paper>
+        }
 
         <TableContainer>
             <Table aria-label='tabla cosas'>
